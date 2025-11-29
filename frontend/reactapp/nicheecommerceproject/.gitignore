@@ -1,0 +1,15 @@
+# Node / Backend
+backend/node_modules/
+backend/.env
+
+# React / Frontend
+nicheecommerce/node_modules/
+nicheecommerce/.env
+nicheecommerce/build/
+
+# Common
+node_modules/
+.env
+.DS_Store
+.vscode/
+uploads/
