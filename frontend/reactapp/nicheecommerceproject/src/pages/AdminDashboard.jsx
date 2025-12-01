@@ -10,19 +10,19 @@ export default function AdminDashboard() {
             title: "Approve Artisans",
             desc: "Review and approve artisan accounts waiting for verification.",
             icon: <FaUsers size={30} />,
-            route: "/admin/artisans",
+            route: "/artisan",
         },
         {
             title: "Approve Products",
             desc: "Approve new handmade products submitted by artisans.",
             icon: <FaBoxOpen size={30} />,
-            route: "/admin/products",
+            route: "/product/new",
         },
         {
             title: "Orders & Transactions",
             desc: "View recent customer orders and payment activities.",
             icon: <FaShoppingBag size={30} />,
-            route: "/admin/orders",
+            route: "/orders",
         },
         {
             title: "Reports & Analytics",
@@ -58,7 +58,10 @@ export default function AdminDashboard() {
                         </h2>
                         <p className="text-black/70 text-sm">{item.desc}</p>
 
-                        <button className="mt-4 px-4 py-2 bg-yellow-400 text-black rounded-lg hover:bg-yellow-500 shadow">
+                        <button
+                            onClick={() => navigate(item.route)}
+                            className="mt-4 px-4 py-2 bg-yellow-400 text-black rounded-lg hover:bg-yellow-500 shadow"
+                        >
                             Manage
                         </button>
                     </div>

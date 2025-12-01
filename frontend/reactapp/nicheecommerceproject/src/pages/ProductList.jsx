@@ -8,7 +8,7 @@ export default function ProductList() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-    const categories = ['All', 'Jewelry', 'Home Decor', 'Clothing', 'Art', 'Accessories', 'Furniture'];
+    const categories = ['All', 'Jewelry', 'Home Decor', 'Clothing', 'Art', 'Accessories', 'Furniture', 'Electric'];
 
     useEffect(() => {
         fetchProducts();
@@ -19,9 +19,17 @@ export default function ProductList() {
         setError('');
 
         try {
-            const res = await productApi.list(filters);
+            // Build query params dynamically
+            const query = {};
+            if (filters.q) query.q = filters.q;
+            if (filters.category) query.category = filters.category;
+            if (filters.min) query.min = filters.min;
+            if (filters.max) query.max = filters.max;
+
+            const res = await productApi.list(query); // Assuming API accepts query object
             setProducts(res.data);
         } catch (err) {
+            console.error(err);
             setError('Failed to fetch products.');
         } finally {
             setLoading(false);
@@ -50,15 +58,16 @@ export default function ProductList() {
 
                 <select
                     value={filters.category}
-                    onChange={e => setFilters(f => ({ ...f, category: e.target.value }))}
+                    onChange={e => setFilters(f => ({ ...f, category: e.target.value || undefined }))}
                     className="p-3 rounded-lg flex-1 bg-gray-600 text-white"
                 >
                     {categories.map(c => (
-                        <option key={c} value={c === "All" ? "" : c.toLowerCase()}>
+                        <option key={c} value={c === "All" ? "" : c}>
                             {c}
                         </option>
                     ))}
                 </select>
+
 
                 <input
                     type="number"
@@ -76,7 +85,7 @@ export default function ProductList() {
                     className="p-3 rounded-lg w-24 bg-gray-600 text-white"
                 />
 
-                <button className="px-5 py-3 bg-yellow-400 text-black rounded-lg">
+                <button type="submit" className="px-5 py-3 bg-yellow-400 text-black rounded-lg">
                     Search
                 </button>
             </form>

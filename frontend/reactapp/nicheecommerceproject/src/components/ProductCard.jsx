@@ -1,6 +1,8 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductCard({ product }) {
+    const navigate = useNavigate();
+
     const img = product.images?.length
         ? `http://localhost:5000/uploads/products/${product.images[0]}`
         : "https://via.placeholder.com/300x200?text=No+Image";
@@ -14,14 +16,15 @@ export default function ProductCard({ product }) {
             />
 
             <h3 className="text-lg font-bold text-black">{product.name}</h3>
-
             <p className="text-sm text-black/70 mt-1 line-clamp-2">
                 {product.description}
             </p>
-
             <p className="font-semibold mt-2 text-black">₹{product.price}</p>
 
-            <button className="mt-3 w-full bg-yellow-400 text-black py-2 rounded-lg font-semibold hover:bg-yellow-500 transition">
+            <button
+                onClick={() => navigate(`/products/${product._id}`)}
+                className="mt-3 w-full bg-yellow-400 text-black py-2 rounded-lg font-semibold hover:bg-yellow-500 transition"
+            >
                 View Details
             </button>
         </div>

@@ -81,8 +81,8 @@ export default function Register() {
                             onChange={e => setForm(f => ({ ...f, role: e.target.value }))}
                             className="w-full p-3 bg-white/20 rounded-lg mt-1 focus:ring-2 focus:ring-yellow-300 focus:outline-none cursor-pointer"
                         >
-                            <option value="customer">Customer</option>
-                            <option value="artisan">Artisan</option>
+                            <option className="text-black" value="customer">Customer</option>
+                            <option className="text-black" value="artisan">Artisan</option>
                         </select>
                     </div>
 

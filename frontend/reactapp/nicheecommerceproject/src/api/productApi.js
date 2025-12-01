@@ -18,6 +18,13 @@ export const productApi = {
     },
 
     // -------------------------------
+    // GET SINGLE PRODUCT
+    // -------------------------------
+    get: async (id) => {
+        return axios.get(`${BASE_URL}/prod/${id}`);
+    },
+
+    // -------------------------------
     // CREATE PRODUCT
     // -------------------------------
     create: async (data) => {
@@ -29,7 +36,7 @@ export const productApi = {
     },
 
     // -------------------------------
-    // 🔐 USER AUTH — LOGIN & REGISTER
+    // USER AUTH — LOGIN & REGISTER
     // -------------------------------
     register: async (data) => {
         return axios.post(`${BASE_URL}/user/register`, data);
